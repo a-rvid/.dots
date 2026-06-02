@@ -5,6 +5,7 @@
     ./hyfetch.nix
     ./dev.nix
     ./firefox.nix
+    ./mango.nix
   ];
 
   home.username = "user";
