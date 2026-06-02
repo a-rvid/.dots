@@ -16,7 +16,7 @@
         bigclock = true;
       };
     };
-    
+
     services.flatpak.enable = true;
 
     preservation.preserveAt."/persistent".users.user.directories = [

@@ -1,5 +1,15 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
+let
+  # pam_mount calls mount.fuse -> su user -> gocryptfs, and the resulting
+  # PATH does not include /run/wrappers/bin, so go-fuse picks up the
+  # un-setuid fusermount from the fuse store path and the kernel rejects
+  # the mount. Prepend the wrappers dir so the setuid fusermount wins. Thanks claude, was difficult
+  gocryptfsForPam = pkgs.writeShellScriptBin "gocryptfs" ''
+    export PATH=/run/wrappers/bin:$PATH
+    exec ${pkgs.gocryptfs}/bin/gocryptfs "$@"
+  '';
+in
 {
   environment.systemPackages = with pkgs; [
     git
@@ -7,25 +17,41 @@
     wl-clipboard
     libfido2
     gocryptfs
+    stow
     usbutils
     pciutils
     nushell
   ];
-  
+
   security.pam.mount = {
     enable = true;
     extraVolumes = [
       ''
         <volume
           fstype="fuse"
-          mountpoint="/home/user/crypt"
-          path="/usr/bin/gocryptfs#/home/user/.dots/encrypt"
-          options="nodev,nosuid"
+          mountpoint="/home/user/.crypt"
+          path="${gocryptfsForPam}/bin/gocryptfs#/home/user/.dots/encrypt"
+          options="nodev,nosuid,quiet"
           user="user"
         />
       ''
     ];
     createMountPoints = true;
+  };
+
+  security.pam.services.login.text = lib.mkAfter ''
+    session optional ${pkgs.pam}/lib/security/pam_exec.so /home/user/.dots/scripts/login.sh
+  '';
+
+  systemd.user.services.crypt-mount = {
+    enable = true;
+    description = "Create mount point for gocryptfs";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      ExecStart = ''/run/current-system/sw/bin/ mkdir -p /home/user/.crypt'';
+      User = "user";
+      Group = "users";
+    };
   };
 
   services.udev.packages = [ pkgs.libfido2 ];
