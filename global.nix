@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 
 let
   # pam_mount calls mount.fuse -> su user -> gocryptfs, and the resulting
@@ -17,6 +17,7 @@ in
     wl-clipboard
     libfido2
     gocryptfs
+    btop
     stow
     usbutils
     pciutils
@@ -39,9 +40,12 @@ in
     createMountPoints = true;
   };
 
-  security.pam.services.login.text = lib.mkAfter ''
-    session optional ${pkgs.pam}/lib/security/pam_exec.so /home/user/.dots/scripts/login.sh
-  '';
+  security.pam.services.login.rules.session.run_login_script = {
+    order = 20000;
+    control = "optional";
+    modulePath = "${pkgs.pam}/lib/security/pam_exec.so";
+    args = [ "/home/user/.dots/scripts/login.sh" ];
+  };
 
   systemd.user.services.crypt-mount = {
     enable = true;

@@ -1,6 +1,10 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    mangowm = {
+      url = "github:mangowm/mango";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
@@ -25,6 +29,7 @@
         inputs.preservation.nixosModules.default
         inputs.home-manager.nixosModules.home-manager
         inputs.nixvim.nixosModules.nixvim
+        inputs.mangowm.nixosModules.mango
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
@@ -45,6 +50,7 @@
         inputs.preservation.nixosModules.default
         inputs.home-manager.nixosModules.home-manager
         inputs.nixvim.nixosModules.nixvim
+        inputs.mangowm.nixosModules.mango
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
@@ -82,6 +88,7 @@
         inputs.disko.nixosModules.disko
         inputs.preservation.nixosModules.default
         inputs.nixvim.nixosModules.nixvim
+        inputs.mangowm.nixosModules.mango
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;

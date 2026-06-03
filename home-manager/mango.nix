@@ -12,25 +12,21 @@
 
   config = lib.mkIf config.mango.enable {
     programs.foot.enable = true;
-    programs.fuzzel.enable = true;
     wayland.windowManager.mango.enable = true;
     wayland.windowManager.mango.extraConfig = ''
       monitorrule=model:TL140BDXP01-0,width:2560,height:1440,refresh:120,scale:1.66666666,x:0,y:0
       exec-once=dms run
+      exec-once=foot --server
     '';
     wayland.windowManager.mango.settings = {
       # Window effect
-      blur = 1;
-      blur_layer = 1;
-      blur_optimized = 1;
-      blur_params = {
-        num_passes = 2;
-        radius = 5;
-        noise = 0.02;
-        brightness = 0.9;
-        contrast = 0.9;
-        saturation = 1.2;
-      };
+      blur=1;
+      blur_params_num_passes=3;
+      blur_params_radius=8;
+      blur_params_noise=0.03;
+      blur_params_brightness=0.85;
+      blur_params_contrast=0.85;
+      blur_params_saturation=1.3;
 
       shadows = 0;
       layer_shadows = 0;
@@ -43,8 +39,8 @@
 
       border_radius = 6;
       no_radius_when_single = 0;
-      focused_opacity = 1.0;
-      unfocused_opacity = 1.0;
+      focused_opacity = 0.99;
+      unfocused_opacity = 0.93;
 
       # Animation Configuration (support type: zoom, slide)
       # tag_animation_direction: 1-horizontal, 0-vertical
@@ -163,15 +159,15 @@
       # layout support:
       # tile, scroller, grid, deck, monocle, center_tile, vertical_tile, vertical_scroller
       tagrule = [
-        "id:1,layout_name:tile"
+        "id:1,layout_name:scroller"
         "id:2,layout_name:scroller"
-        "id:3,layout_name:tile"
-        "id:4,layout_name:tile"
-        "id:5,layout_name:tile"
-        "id:6,layout_name:tile"
-        "id:7,layout_name:tile"
-        "id:8,layout_name:tile"
-        "id:9,layout_name:tile"
+        "id:3,layout_name:scroller"
+        "id:4,layout_name:scroller"
+        "id:5,layout_name:scroller"
+        "id:6,layout_name:scroller"
+        "id:7,layout_name:scroller"
+        "id:8,layout_name:scroller"
+        "id:9,layout_name:scroller"
       ];
 
       # Key Bindings
@@ -180,9 +176,12 @@
       bind = [
         # reload config
         "SUPER,r,reload_config"
-        "SUPER,d,spawn,fuzzel"
-        "SUPER,Return,spawn,foot"
+        "SUPER,d,spawn,dms ipc call widget openWith launcherButton apps"
+        "SUPER,b,spawn,gio open http://"
+        "SUPER,h,spawn,dms ipc call keybinds toggle mangowc"
+        "SUPER,Return,spawn,footclient"
         "SUPER,m,quit"
+        "SUPER,q,killclient"
         "SUPER,Tab,focusstack,next"
         "SUPER,Left,focusdir,left"
         "SUPER,Right,focusdir,right"
@@ -222,8 +221,8 @@
         "SUPER,n,switch_layout"
 
         # tag switch
-        "CTRL,Left,viewtoleft_have_client,0"
-        "CTRL,Right,viewtoright_have_client,0"
+        # "CTRL,Left,viewtoleft_have_client,0"
+        # "CTRL,Right,viewtoright_have_client,0"
         "CTRL+SUPER,Left,tagtoleft,0"
         "CTRL+SUPER,Right,tagtoright,0"
 
@@ -277,14 +276,15 @@
       # btn_left and btn_right can't bind none mod key
       mousebind = [
         "SUPER,btn_left,moveresize,curmove"
-        "NONE,btn_middle,togglemaximizescreen,0"
         "SUPER,btn_right,moveresize,curresize"
+        "SUPER,btn_forward,focusdir,right"
+        "SUPER,btn_back,focusdir,left"
       ];
 
       # Axis Bindings
       axisbind = [
-        "SUPER,UP,viewtoleft_have_client"
-        "SUPER,DOWN,viewtoright_have_client"
+        "SUPER,DOWN,focusdir,right"
+        "SUPER,UP,focusdir,left"
       ];
 
       # layer rule
