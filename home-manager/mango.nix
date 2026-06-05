@@ -179,6 +179,8 @@
         "SUPER,d,spawn,dms ipc call widget openWith launcherButton apps"
         "SUPER,b,spawn,gio open http://"
         "SUPER,h,spawn,dms ipc call keybinds toggle mangowc"
+        "SUPER,x,spawn,dms ipc call bar toggle index 0"
+        "SUPER+SHIFT,s,spawn,dms screenshot" 
         "SUPER,Return,spawn,footclient"
         "SUPER,m,quit"
         "SUPER,q,killclient"
@@ -187,6 +189,9 @@
         "SUPER,Right,focusdir,right"
         "SUPER,Up,focusdir,up"
         "SUPER,Down,focusdir,down"
+        "NONE,XF86AudioRaiseVolume,spawn,dms ipc call audio increment 5"
+        "NONE,XF86AudioLowerVolume,spawn,dms ipc call audio decrement 5"
+        "NONE,XF86AudioMute,spawn,dms ipc call audio mute"
 
         # swap window
         "SUPER+SHIFT,Up,exchange_client,up"
@@ -209,10 +214,10 @@
         # scroller layout
         "ALT,e,set_proportion,1.0"
         "ALT,x,switch_proportion_preset,"
-        "alt+super+ctrl,Left,scroller_stack,left"
-        "alt+super+ctrl,Right,scroller_stack,right"
-        "alt+super+ctrl,Up,scroller_stack,up"
-        "alt+super+ctrl,Down,scroller_stack,down"
+        "alt+SUPER+ctrl,Left,scroller_stack,left"
+        "alt+SUPER+ctrl,Right,scroller_stack,right"
+        "alt+SUPER+ctrl,Up,scroller_stack,up"
+        "alt+SUPER+ctrl,Down,scroller_stack,down"
 
         # dwindle layout (manual split mode)
         "alt+shift,Return,dwindle_toggle_split_direction"

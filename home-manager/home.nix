@@ -6,6 +6,7 @@
     ./dev.nix
     ./firefox.nix
     ./mango.nix
+    ./sway.nix
   ];
 
   home.username = "user";
