@@ -39,7 +39,7 @@
 
   users.users.user = {
     isNormalUser = true;
-    hashedPassword = "$y$j9T$eUoA3MuwwWRr1JDKf5ob50$i9wgCmrTSVkT.HuOIVJg81mmmH1TOyQ0uR132Rm8ZE2";
+    hashedPassword = "$y$j9T$Suy35oPlzmkh0KH8qtEQ1.$WVe1H5RZzJrrD2m3twNHqAZcF.S22iwrnbSxlcZcNk5";
     extraGroups = ["wheel" "input" "video" "fuse" "plugdev"];
     packages = with pkgs; [
       tree

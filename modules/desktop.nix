@@ -11,6 +11,7 @@
       ffmpeg
       mpv
       swappy
+      keepassxc
     ];
 
     home-manager.users.user.sway.enable = true;
@@ -24,8 +25,6 @@
 
 
     security.polkit.enable = true;
-    services.gnome.gnome-keyring.enable = true;
-
     # services.displayManager.ly = {
     #   enable = true;
     #   settings = {
@@ -38,6 +37,7 @@
 
     services.flatpak.enable = true;
     xdg.portal.enable = true;
+    xdg.portal.wlr.enable = true;
 
     preservation.preserveAt."/persistent".users.user.directories = [
       "Documents"
