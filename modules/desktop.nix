@@ -7,32 +7,37 @@
   };
 
   config = lib.mkIf config.desktop.enable {
-    home-manager.users.user.mango.enable = true;
-    programs.dms-shell = {
-      enable = true;
+    environment.systemPackages = with pkgs; [
+      ffmpeg
+      mpv
+      swappy
+    ];
 
-      # Core features
-      enableSystemMonitoring = true;     # System monitoring widgets (dgop)
-      enableVPN = true;                  # VPN management widget
-      enableDynamicTheming = true;       # Wallpaper-based theming (matugen)
-      enableAudioWavelength = true;      # Audio visualizer (cava)
-      enableCalendarEvents = true;       # Calendar integration (khal)
-      enableClipboardPaste = true;       # Pasting from the clipboard history (wtype)
-    };
+    home-manager.users.user.sway.enable = true;
+    fonts.packages = with pkgs; [
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-color-emoji
+      fira-code
+      liberation_ttf
+    ];
+
 
     security.polkit.enable = true;
+    services.gnome.gnome-keyring.enable = true;
 
-    services.displayManager.ly = {
-      enable = true;
-      settings = {
-        animate = true;
-        animation = "gameoflife"; 
-        clock = "%c";
-        bigclock = true;
-      };
-    };
+    # services.displayManager.ly = {
+    #   enable = true;
+    #   settings = {
+    #     animate = true;
+    #     animation = "gameoflife"; 
+    #     clock = "%c";
+    #     bigclock = true;
+    #   };
+    # };
 
     services.flatpak.enable = true;
+    xdg.portal.enable = true;
 
     preservation.preserveAt."/persistent".users.user.directories = [
       "Documents"
@@ -42,6 +47,7 @@
       ".local/state/pipewire"
       ".config/pulse"
       ".config/wireplumber"
+      ".local/share/keyrings"
       ".local/share/flatpak"
     ];
 

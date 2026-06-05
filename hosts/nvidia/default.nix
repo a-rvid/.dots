@@ -13,13 +13,15 @@
   };
   dev.enable = true;
   home-manager.users.user.firefox.enable = true;
+  home-manager.users.user.sway.enable = true;
   hardware.bluetooth.enable = true;
+  environment.systemPackages = with pkgs; [ prismlauncher ];
+
+  preservation.preserveAt."/persistent".users.user.directories = [
+    ".local/share/PrismLauncher"
+  ];
   
   networking.hostName = "nvidia";
 
   desktop.enable = true;
-  services.desktopManager.plasma6.enable = true;
-  environment.systemPackages = [
-    pkgs.cage
-  ];
 }

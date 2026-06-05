@@ -40,11 +40,16 @@ in
     createMountPoints = true;
   };
 
-  security.pam.services.login.rules.session.run_login_script = {
-    order = 20000;
-    control = "optional";
-    modulePath = "${pkgs.pam}/lib/security/pam_exec.so";
-    args = [ "/home/user/.dots/scripts/login.sh" ];
+  security.pam.services = let
+    runLoginScript = {
+      order = 20000;
+      control = "optional";
+      modulePath = "${pkgs.pam}/lib/security/pam_exec.so";
+      args = [ "seteuid" "/home/user/.dots/scripts/login.sh" ];
+    };
+  in {
+    login.rules.session.run_login_script = runLoginScript;
+    ly.rules.session.run_login_script = runLoginScript;
   };
 
   systemd.user.services.crypt-mount = {

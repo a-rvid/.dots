@@ -9,7 +9,11 @@
   config = lib.mkIf config.dev.enable {
     home-manager.users.user.dev.enable = true;
     preservation.preserveAt."/persistent".users.user = {
-      directories = [ ".claude" ];
+      directories = [ 
+        ".claude"
+        ".rustup"
+        ".cargo"
+      ];
       files = [ ".claude.json" ];
     };
   };

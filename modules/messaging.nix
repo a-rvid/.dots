@@ -19,6 +19,7 @@
       ".config/Signal"
       ".config/vesktop"
       ".config/gajim"
+      ".local/share/gajim/"
     ];
   };
 }
