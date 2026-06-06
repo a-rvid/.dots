@@ -10,6 +10,8 @@
     environment.systemPackages = with pkgs; [
       ffmpeg
       mpv
+      dnsutils
+      acpi
       swappy
       keepassxc
     ];
@@ -23,6 +25,15 @@
       liberation_ttf
     ];
 
+    security.rtkit.enable = true;
+    services.pipewire = {
+      enable = true; # if not already enabled
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      # If you want to use JACK applications, uncomment the following
+      #jack.enable = true;
+    };
 
     security.polkit.enable = true;
     # services.displayManager.ly = {
@@ -47,8 +58,8 @@
       ".local/state/pipewire"
       ".config/pulse"
       ".config/wireplumber"
-      ".local/share/keyrings"
       ".local/share/flatpak"
+      ".var/app/com.bambulab.BambuStudio/config/BambuStudio"
     ];
 
     preservation.preserveAt."/persistent" = {
