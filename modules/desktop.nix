@@ -9,6 +9,7 @@
   config = lib.mkIf config.desktop.enable {
     environment.systemPackages = with pkgs; [
       ffmpeg
+      emacs
       mpv
       dnsutils
       acpi
@@ -60,6 +61,7 @@
       ".config/wireplumber"
       ".local/share/flatpak"
       ".var/app/com.bambulab.BambuStudio/config/BambuStudio"
+      ".emacs.d"
     ];
 
     preservation.preserveAt."/persistent" = {

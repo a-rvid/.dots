@@ -4,6 +4,10 @@
   imports = [
     ../../modules/bundle.nix
   ];
+  macchanger = {
+    enable = true;
+    interface = "wlp2s0";
+  };
   firefox.enable = true;
   nixvim.enable  = true; 
   messaging.enable = true;
