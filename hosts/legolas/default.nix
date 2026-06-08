@@ -9,7 +9,6 @@
     enable = true;
     steam.enable = true;
     amd.enable = true;
-    nvidia.enable = true;
   };
   dev.enable = true;
   services.hardware.deepcool-digital-linux.enable = true;

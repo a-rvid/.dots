@@ -3,6 +3,7 @@
 {
   imports = [
     ./mullvad-browser.nix
+    ./vol.nix
   ];
   
   options = {
@@ -12,6 +13,8 @@
 
   config = lib.mkIf config.desktop.enable {
     environment.systemPackages = with pkgs; [
+      brightnessctl
+      pavucontrol
       ffmpeg
       mpv
       firefox

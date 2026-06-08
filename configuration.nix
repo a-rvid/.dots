@@ -36,7 +36,6 @@
   };
 
   console.keyMap = "sv-latin1";
-
   users.users.user = {
     isNormalUser = true;
     hashedPassword = "$y$j9T$Suy35oPlzmkh0KH8qtEQ1.$WVe1H5RZzJrrD2m3twNHqAZcF.S22iwrnbSxlcZcNk5";
@@ -45,7 +44,6 @@
       tree
     ];
   };
-
 
   # preservation handles machine-id persistence via bind mount; prevent
   # systemd from trying to commit it from tmpfs (which fails on btrfs-backed bind mount)

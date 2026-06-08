@@ -33,6 +33,22 @@
 (require 'evil)
 (evil-mode 1)
 (setq evil-insert-state-map (make-sparse-keymap))
+(evil-ex-define-cmd "w!" 'save-sudo)
+
+;; Save current buffer to the same file but via sudo (prompts for password)
+(defun save-sudo ()
+  "Save current buffer as root using TRAMP sudo."
+  (interactive)
+  (let* ((file (or buffer-file-name
+                   (user-error "Buffer not visiting a file")))
+         (sudo-path (if (string-match-p "^/[^:]+:" file)
+                        ;; already a tramp path: replace method with sudo
+                        (replace-regexp-in-string
+                         "^/\\([^:]+\\):" "/sudo:\\1:" file)
+                      ;; local path -> sudo:: absolute path
+                      (concat "/sudo::" file))))
+    (when (y-or-n-p (format "Save %s as root? " sudo-path))
+      (write-file sudo-path))))
 
 ;; (define-key evil-normal-state-map (kbd "gcc") 'comment-line)
 (require 'evil-commentary)
