@@ -9,7 +9,6 @@
   config = lib.mkIf config.desktop.enable {
     environment.systemPackages = with pkgs; [
       ffmpeg
-      emacs
       mpv
       dnsutils
       acpi

@@ -2,13 +2,15 @@
 
 {
   options = {
-    mac-changer.enable = 
+    macchanger.enable = 
       lib.mkEnableOption "enables automatic macchanger";
-    mac-changer.interface = lib.mkOption "Interface";
+    macchanger.interface = lib.mkOption { default = "eth0"; };
   };
 
-  config = lib.mkIf config.mac-changer.enable {
-    packages.mac-changer.enable = true;
+  config = lib.mkIf config.macchanger.enable {
+    environment.systemPackages = [
+      pkgs.macchanger
+    ];
     systemd.services."macchanger" = {
       description = "Changes MAC";
       wants = [ "network-pre.target" ];
@@ -17,8 +19,9 @@
       bindsTo = [ "sys-subsystem-net-devices-wlp3s0.device" ];
       after = [ "sys-subsystem-net-devices-wlp3s0.device" ];
       script = ''
-        ${pkgs.macchanger}/bin/macchanger -b ${config.mac-changer.interface}
+        ${pkgs.macchanger}/bin/macchanger -b ${config.macchanger.interface}
       '';
       serviceConfig.Type = "oneshot";
+    };
   };
 }

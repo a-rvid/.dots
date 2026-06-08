@@ -64,14 +64,16 @@ in
   };
 
   services = {
-    tor = {
-      enable = true;
-      client.dns.enable = true;
-      settings.DNSPort = [{
-        addr = "127.0.0.1";
-        port = 53;
-      }];
-    };
+    # tor = {
+    #   enable = true;
+    #   client.dns.enable = true;
+    #   client.enable = true;
+    #   settings.ControlPort = 9051;
+    #   settings.DNSPort = [{
+    #     addr = "127.0.0.1";
+    #     port = 53;
+    #   }];
+    # };
     resolved = {
       enable = true; # For caching DNS requests.
       fallbackDns = [ "" ]; # Overwrite compiled-in fallback DNS servers.

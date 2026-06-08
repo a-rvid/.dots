@@ -28,11 +28,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1780632178,
-        "narHash": "sha256-jrPWVIVHkIkefkJMTt7CHrTO3EnS5Ol/zqkYd1Vr8vA=",
+        "lastModified": 1780804967,
+        "narHash": "sha256-Z2nOP600ATQLLHHemhHtYDjWyAqgLrVsozznIkvnkYY=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "79a54775d2f4dcb24a792784496af73acf7cfd23",
+        "rev": "f15cdd20d0845728919ad067ff43bdd334b4b344",
         "type": "gitlab"
       },
       "original": {
@@ -111,11 +111,11 @@
         "scenefx": "scenefx"
       },
       "locked": {
-        "lastModified": 1780541279,
-        "narHash": "sha256-UdwXcUeOgfct2GBadVCsonMIay3Gndylr0pMmxz7z/k=",
+        "lastModified": 1780826935,
+        "narHash": "sha256-vtgE4kuP/tf6CqMAFhn8Bo7f2PP/bmnGSmdx9ZzArKU=",
         "owner": "mangowm",
         "repo": "mango",
-        "rev": "8a92184667ae945955c2139847e5e1994a5f9671",
+        "rev": "ccb58a4f1ab95fb22a3b93395c306df854a4d475",
         "type": "github"
       },
       "original": {
@@ -126,16 +126,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1780453794,
-        "narHash": "sha256-bXMRa9VTsHSPXL4Cw8R6JJLQeY3Y/IP4+YJCYVmQ7FY=",
+        "lastModified": 1780873182,
+        "narHash": "sha256-mFAdnHkVL3V9rg/vXlpTpXIrNLtM+DDTyfC89oyVtII=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "6b316287bae2ee04c9b93c8c858d930fd07d7338",
+        "rev": "782cd932c3b7f77854f5392696123aa26dcdce3f",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-26.05",
+        "ref": "release-26.05",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -178,11 +178,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1780646548,
-        "narHash": "sha256-Ckyl/l1XBmEwnaHcHD8PvBZk1uph0NqwbJ//CAvB7iE=",
+        "lastModified": 1780869305,
+        "narHash": "sha256-acE+jJPFGtf2moWbHB/kgKSKspcBYOc5Tz6WPFFFPW4=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "816a15282e58678dde831477964987d0262d4293",
+        "rev": "643284206b9fe4761fd1417025aebf6903b31fa5",
         "type": "github"
       },
       "original": {
