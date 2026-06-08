@@ -19,7 +19,7 @@
       bindsTo = [ "sys-subsystem-net-devices-wlp3s0.device" ];
       after = [ "sys-subsystem-net-devices-wlp3s0.device" ];
       script = ''
-        ${pkgs.macchanger}/bin/macchanger -b ${config.macchanger.interface}
+        ${pkgs.macchanger}/bin/macchanger --random -b ${config.macchanger.interface}
       '';
       serviceConfig.Type = "oneshot";
     };

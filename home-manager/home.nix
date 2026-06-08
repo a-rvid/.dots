@@ -5,8 +5,6 @@
     ./hyfetch.nix
     ./emacs.nix
     ./dev.nix
-    ./firefox.nix
-    ./mango.nix
     ./sway.nix
   ];
 

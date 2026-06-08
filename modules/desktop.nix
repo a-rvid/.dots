@@ -1,6 +1,10 @@
 { config, inputs, lib, pkgs, ... }:
 
 {
+  imports = [
+    ./mullvad-browser.nix
+  ];
+  
   options = {
     desktop.enable =
       lib.mkEnableOption "enables desktop stuff";
@@ -10,13 +14,13 @@
     environment.systemPackages = with pkgs; [
       ffmpeg
       mpv
+      firefox
       dnsutils
       acpi
       swappy
       keepassxc
     ];
 
-    home-manager.users.user.sway.enable = true;
     fonts.packages = with pkgs; [
       noto-fonts
       noto-fonts-cjk-sans
@@ -46,6 +50,9 @@
     #   };
     # };
 
+    home-manager.users.user.sway.enable = true;
+    hardware.bluetooth.enable = true;
+
     services.flatpak.enable = true;
     xdg.portal.enable = true;
     xdg.portal.wlr.enable = true;
@@ -59,6 +66,7 @@
       ".config/pulse"
       ".config/wireplumber"
       ".local/share/flatpak"
+      ".mozilla"
       ".var/app/com.bambulab.BambuStudio/config/BambuStudio"
       ".emacs.d"
     ];

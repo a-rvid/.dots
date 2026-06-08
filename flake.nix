@@ -1,17 +1,11 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/release-26.05";
-    mangowm = {
-      url = "github:mangowm/mango";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
     preservation.url = "github:nix-community/preservation";
-
-    nixvim.url = "github:nix-community/nixvim";
 
     home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -28,8 +22,6 @@
         inputs.disko.nixosModules.disko
         inputs.preservation.nixosModules.default
         inputs.home-manager.nixosModules.home-manager
-        inputs.nixvim.nixosModules.nixvim
-        inputs.mangowm.nixosModules.mango
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
@@ -49,8 +41,6 @@
         inputs.disko.nixosModules.disko
         inputs.preservation.nixosModules.default
         inputs.home-manager.nixosModules.home-manager
-        inputs.nixvim.nixosModules.nixvim
-        inputs.mangowm.nixosModules.mango
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
@@ -76,7 +66,6 @@
           home-manager.extraSpecialArgs = { inherit inputs; };
           home-manager.users.user = ./home-manager/home.nix;
         }
-        inputs.nixvim.nixosModules.nixvim
         ./configuration.nix
         ./disko-min.nix
         ./hosts/vps
@@ -87,8 +76,6 @@
       modules = [
         inputs.disko.nixosModules.disko
         inputs.preservation.nixosModules.default
-        inputs.nixvim.nixosModules.nixvim
-        inputs.mangowm.nixosModules.mango
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;

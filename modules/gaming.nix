@@ -13,6 +13,11 @@
   };
 
   config = lib.mkIf config.gaming.enable {
+    environment.systemPackages = with pkgs; [ prismlauncher ];
+    preservation.preserveAt."/persistent".users.user.directories = [
+        ".local/share/PrismLauncher"
+        ".local/share/Steam"
+    ];
     hardware.graphics = {
       enable = true;
       enable32Bit = true;
@@ -35,7 +40,7 @@
     };
     programs.gamemode.enable = config.gaming.steam.enable;
 
-    preservation.preserveAt."/persistent".users.user.directories =
-      lib.optionals config.gaming.steam.enable [ ".local/share/Steam" ];
+    # preservation.preserveAt."/persistent".users.user.directories =
+    #   lib.optionals config.gaming.steam.enable [ ".local/share/Steam" ];
   };
 }

@@ -22,6 +22,10 @@ in
     usbutils
     pciutils
     nushell
+    (lib.hiPrio uutils-coreutils-noprefix)
+    uutils-util-linux
+    uutils-findutils
+    uutils-diffutils
   ];
 
   security.pam.mount = {

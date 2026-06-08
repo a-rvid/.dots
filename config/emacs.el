@@ -33,6 +33,7 @@
 (require 'evil)
 (evil-mode 1)
 (setq evil-insert-state-map (make-sparse-keymap))
+
 ;; (define-key evil-normal-state-map (kbd "gcc") 'comment-line)
 (require 'evil-commentary)
 (evil-commentary-mode)
@@ -49,3 +50,10 @@
 ;; (global-set-key (kbd "s-b") 'webkit) ;; Bind to whatever global key binding you want if you want
 ;; (require 'webkit-ace) ;; If you want link hinting
 ;; (require 'webkit-dark) ;; If you want to use the simple dark mode
+
+;; Eshell
+(add-to-list 'eshell-modules-list 'eshell-tramp)
+(setq eshell-prefer-lisp-functions t)
+(setq eshell-prefer-lisp-variables t)
+(setq password-cache t)
+(setq password-cache-expiry 12)

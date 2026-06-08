@@ -4,9 +4,13 @@
   home.packages = with pkgs; [
     pkg-config
     gnumake
+    (writeShellScriptBin "e" ''
+      ${emacs}/bin/emacsclient -c "$@"
+    '')
     gcc
   ];
-
+  
+  services.emacs.enable = true;
   programs.emacs = {
     enable = true;
     package = pkgs.emacs-gtk;
