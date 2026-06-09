@@ -4,6 +4,7 @@
   imports = [
     ./mullvad-browser.nix
     ./vol.nix
+    ./usbguard.nix
   ];
   
   options = {
@@ -12,6 +13,7 @@
   };
 
   config = lib.mkIf config.desktop.enable {
+    custom.security.usbguard.enable = true;
     environment.systemPackages = with pkgs; [
       brightnessctl
       pavucontrol
