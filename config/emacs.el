@@ -1,4 +1,5 @@
 (setq standard-indent 2)
+(global-wakatime-mode)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
@@ -68,8 +69,11 @@
 ;; (require 'webkit-dark) ;; If you want to use the simple dark mode
 
 ;; Eshell
+(require 'esh-mode)
+(require 'em-tramp)
+(require 'password-cache)
 (add-to-list 'eshell-modules-list 'eshell-tramp)
 (setq eshell-prefer-lisp-functions t)
 (setq eshell-prefer-lisp-variables t)
 (setq password-cache t)
-(setq password-cache-expiry 12)
+(setq password-cache-expiry 3600)

@@ -4,6 +4,7 @@
   home.packages = with pkgs; [
     pkg-config
     gnumake
+    wakatime-cli
     (writeShellScriptBin "e" ''
       ${emacs}/bin/emacsclient -c "$@"
     '')
@@ -11,12 +12,14 @@
   ];
   
   services.emacs.enable = true;
+
   programs.emacs = {
     enable = true;
     package = pkgs.emacs-gtk;
     extraPackages = epkgs: with epkgs; [
       nix-mode
       magit
+      wakatime-mode
       rainbow-delimiters
       jabber
       doom-themes

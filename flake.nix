@@ -2,6 +2,9 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/release-26.05";
 
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -22,6 +25,7 @@
         inputs.disko.nixosModules.disko
         inputs.preservation.nixosModules.default
         inputs.home-manager.nixosModules.home-manager
+        inputs.nix-index-database.nixosModules.default
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
@@ -38,6 +42,7 @@
     nixosConfigurations.nvidia = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
+        inputs.nix-index-database.nixosModules.default
         inputs.disko.nixosModules.disko
         inputs.preservation.nixosModules.default
         inputs.home-manager.nixosModules.home-manager
@@ -58,6 +63,7 @@
       system = "x86_64-linux";
       modules = [
         inputs.disko.nixosModules.disko
+        inputs.nix-index-database.nixosModules.default
         inputs.preservation.nixosModules.default
         inputs.home-manager.nixosModules.home-manager
         {
@@ -75,6 +81,7 @@
       system = "x86_64-linux";
       modules = [
         inputs.disko.nixosModules.disko
+        inputs.nix-index-database.nixosModules.default
         inputs.preservation.nixosModules.default
         {
           home-manager.useGlobalPkgs = true;

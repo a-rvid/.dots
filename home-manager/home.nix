@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./hyfetch.nix
     ./emacs.nix
     ./dev.nix
     ./sway.nix
@@ -17,7 +16,7 @@
     enable = true;
     settings = {
       # For available settings, see https://github.com/keepassxreboot/keepassxc/blob/develop/src/core/Config.cpp
-      FdoSecrets.Enabled = true; # Enable Secret Service Integration
+      # FdoSecrets.Enabled = true; # Enable Secret Service Integration
     };
   };
 

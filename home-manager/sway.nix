@@ -35,6 +35,8 @@
         bindsym XF86AudioRaiseVolume exec 'vol raise 3';
         bindsym XF86AudioLowerVolume exec 'vol lower 3';
         bindsym XF86AudioMute exec 'vol mute'
+
+        bindsym Super+Shift+S exec 'grim -g $(slurp) - | wl-copy'
       ''; 
       extraOptions = [ "--unsupported-gpu" ]; 
     };
