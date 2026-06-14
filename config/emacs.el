@@ -1,15 +1,25 @@
 (setq standard-indent 2)
+(setq-default indent-tabs-mode nil)
+(setq inhibit-startup-screen t
+    ring-bell-function 'ignore)
 (global-wakatime-mode)
+(electric-pair-mode 1) ;; Autopairs
 (tool-bar-mode -1)
+(fido-vertical-mode 1)
+(global-auto-revert-mode 1)
+(setq use-short-answers t)
+;; (global-hl-line-mode 1) ;; Highlights line you're on
 (menu-bar-mode -1)
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 (global-display-line-numbers-mode)
+(recentf-mode 1) ;; Helps display old files visited to
+(which-key-mode 1) ;; shows options (see C-x for example)
+(global-eldoc-mode 1)
+(savehist-mode 1)
+(setq-default show-trailing-whitespace t)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; Themes
-;; (when (display-graphic-p)
-;;   (invert-face 'default)
-;; )
-;; (set-variable 'frame-background-mode 'dark)
 (use-package doom-themes
   :ensure t
   :custom
@@ -63,7 +73,7 @@
 ;; 	(:password . ,(read-passwd "Enter XMPP password: ")))))
 
 ;; Browser
-;; (require 'webkit) 
+;; (require 'webkit)
 ;; (global-set-key (kbd "s-b") 'webkit) ;; Bind to whatever global key binding you want if you want
 ;; (require 'webkit-ace) ;; If you want link hinting
 ;; (require 'webkit-dark) ;; If you want to use the simple dark mode
