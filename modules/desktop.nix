@@ -26,6 +26,7 @@
       keepassxc
       glib
       xdg-utils
+      lxqt.lxqt-policykit
     ];
 
     programs.command-not-found.enable = false;

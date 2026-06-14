@@ -2,6 +2,11 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/release-26.05";
 
+    run0-sudo-shim = {
+      url = "github:lordgrimmauld/run0-sudo-shim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -24,6 +29,7 @@
       modules = [
         inputs.disko.nixosModules.disko
         inputs.preservation.nixosModules.default
+        inputs.run0-sudo-shim.nixosModules.default
         inputs.home-manager.nixosModules.home-manager
         inputs.nix-index-database.nixosModules.default
         {
@@ -43,6 +49,7 @@
       system = "x86_64-linux";
       modules = [
         inputs.nix-index-database.nixosModules.default
+        inputs.run0-sudo-shim.nixosModules.default
         inputs.disko.nixosModules.disko
         inputs.preservation.nixosModules.default
         inputs.home-manager.nixosModules.home-manager
@@ -59,28 +66,11 @@
         ./hosts/nvidia
       ];
     };
-    nixosConfigurations.vps = inputs.nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        inputs.disko.nixosModules.disko
-        inputs.nix-index-database.nixosModules.default
-        inputs.preservation.nixosModules.default
-        inputs.home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = { inherit inputs; };
-          home-manager.users.user = ./home-manager/home.nix;
-        }
-        ./configuration.nix
-        ./disko-min.nix
-        ./hosts/vps
-      ];
-    };
     nixosConfigurations.work = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         inputs.disko.nixosModules.disko
+        inputs.run0-sudo-shim.nixosModules.default
         inputs.nix-index-database.nixosModules.default
         inputs.preservation.nixosModules.default
         {

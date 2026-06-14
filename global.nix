@@ -13,6 +13,7 @@ in
 {
   environment.systemPackages = with pkgs; [
     git
+    fastfetch
     vim
     wl-clipboard
     libfido2
@@ -27,6 +28,7 @@ in
     uutils-findutils
     uutils-diffutils
   ];
+  security.run0-sudo-shim.enable = true;
 
   security.pam.mount = {
     enable = true;

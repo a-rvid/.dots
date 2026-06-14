@@ -17,9 +17,9 @@
       config = rec {
         modifier = "Mod4";
         terminal = "foot";
-        # startup = [
-        #   {command = "dunst";}
-        # ];
+        startup = [
+          {command = "lxqt-policykit-agent";}
+        ];
         input = {
           "type:keyboard" = {
             xkb_layout = "se";
@@ -27,6 +27,7 @@
         };
       };
       extraConfig = ''
+        for_window [title="Authentication Required"] floating enable
         # Brightness
         bindsym XF86MonBrightnessDown exec brightnessctl set -5%
         bindsym XF86MonBrightnessUp exec brightnessctl set -5%
