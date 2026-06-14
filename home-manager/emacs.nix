@@ -27,6 +27,7 @@
       wakatime-mode
       rainbow-delimiters
       jabber
+      vterm
       doom-themes
       nerd-icons
       evil-commentary

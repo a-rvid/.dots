@@ -67,7 +67,11 @@
 (define-key evil-insert-state-map (kbd "<escape>") 'evil-normal-state)
 ;; (define-key evil-insert-state-map ("C-x") 'evil-normal-state)
 
-;; ;; Jabber.el
+;; Jabber.el
+(with-eval-after-load 'jabber
+  (keymap-set jabber-chat-mode-map "C-c C-r" 'jabber-chat-reply)
+  (keymap-set jabber-chat-mode-map "C-c C-u" 'jabber-chat-attach-file)
+(keymap-global-set "C-c j" 'jabber-roster))
 ;; (setq jabber-account-list
 ;;     `(("etrademark@low-effort.work"
 ;; 	(:password . ,(read-passwd "Enter XMPP password: ")))))
@@ -87,3 +91,9 @@
 (setq eshell-prefer-lisp-variables t)
 (setq password-cache t)
 (setq password-cache-expiry 3600)
+
+
+;; Spotify
+;;(load-file ~/.crypt/.emacs.d/spotcred.el)
+;;(setq smudge-transport 'connect)
+;;(define-key smudge-mode-map (kbd "C-c .") 'smudge-command-map)
