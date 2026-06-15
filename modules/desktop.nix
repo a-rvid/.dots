@@ -6,7 +6,7 @@
     ./vol.nix
     ./usbguard.nix
   ];
-  
+
   options = {
     desktop.enable =
       lib.mkEnableOption "enables desktop stuff";
@@ -23,6 +23,7 @@
       dnsutils
       acpi
       swappy
+      pinentry-curses
       keepassxc
       glib
       xdg-utils
@@ -57,7 +58,7 @@
     #   enable = true;
     #   settings = {
     #     animate = true;
-    #     animation = "gameoflife"; 
+    #     animation = "gameoflife";
     #     clock = "%c";
     #     bigclock = true;
     #   };
