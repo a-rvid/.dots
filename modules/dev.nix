@@ -7,9 +7,11 @@
   };
 
   config = lib.mkIf config.dev.enable {
+    virtualisation.docker.enable = true;
+    users.extraGroups.docker.members = [ "user" ];
     home-manager.users.user.dev.enable = true;
     preservation.preserveAt."/persistent".users.user = {
-      directories = [ 
+      directories = [
         ".claude"
         ".rustup"
         ".cargo"
