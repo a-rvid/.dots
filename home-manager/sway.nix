@@ -33,6 +33,7 @@
         };
       };
       extraConfig = ''
+	output "AOC 24G2W1G3- 1J4Q1HA010276" mode 1920x1080@165.003Hz
         for_window [title="Authentication Required"] floating enable
         # Brightness
         bindsym XF86MonBrightnessDown exec brightnessctl set -5%

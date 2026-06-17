@@ -44,25 +44,30 @@
         resumeDevice = true;
       };
     };
-
     content.partitions.root = {
-      name = "root";
-      size = "100%";
+    name = "root";
+    size = "100%";
 
-      content = {
+    content = {
+        type = "luks";
+        name = "cryptroot";
+        settings.allowDiscards = true;
+
+        content = {
         type = "btrfs";
         extraArgs = ["-f"];
 
         subvolumes = {
-          "/persistent" = {
+            "/persistent" = {
             mountOptions = ["subvol=persistent" "compress=zstd" "noatime"];
             mountpoint = "/persistent";
-          };
+            };
 
-          "/nix" = {
+            "/nix" = {
             mountOptions = ["subvol=nix" "compress=zstd" "noatime"];
             mountpoint = "/nix";
-          };
+            };
+        };
         };
       };
     };
