@@ -11,9 +11,11 @@
     amd.enable = true;
   };
   dev.enable = true;
-  services.hardware.deepcool-digital-linux.enable = true;
-  services.flatpak.enable = true;
-  
+  services = {
+    hardware.deepcool-digital-linux.enable = true;
+    flatpak.enable = true;
+  };
+
   networking.hostName = "legolas";
 
   desktop.enable = true;

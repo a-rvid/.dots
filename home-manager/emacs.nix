@@ -5,6 +5,7 @@
     pkg-config
     zip
     rustc
+    clang-tools
     cargo
     rust-analyzer
     gnumake

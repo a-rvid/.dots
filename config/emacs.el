@@ -16,7 +16,6 @@
 (which-key-mode 1) ;; shows options (see C-x for example)
 (global-eldoc-mode 1)
 (savehist-mode 1)
-(setq-default show-trailing-whitespace t)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; Themes

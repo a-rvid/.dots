@@ -2,7 +2,7 @@
 
 {
   options = {
-    sway.enable = 
+    sway.enable =
       lib.mkEnableOption "enables stuff needed for development";
   };
 
@@ -10,6 +10,12 @@
     programs.foot.enable = true;
     programs.foot.settings.main.font =  "Fira Code:size=11";
     services.dunst.enable = true;
+
+    home.packages = with pkgs; [
+      grim
+      wl-clipboard
+      slurp
+    ];
 
     wayland.windowManager.sway = {
       enable = true;
@@ -38,8 +44,8 @@
         bindsym XF86AudioMute exec 'vol mute'
 
         bindsym Super+Shift+S exec 'grim -g $(slurp) - | wl-copy'
-      ''; 
-      extraOptions = [ "--unsupported-gpu" ]; 
+      '';
+      extraOptions = [ "--unsupported-gpu" ];
     };
   };
 }

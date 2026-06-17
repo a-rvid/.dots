@@ -120,7 +120,7 @@
 
     # Userspace
     # restrict usage of ptrace
-    "kernel.yama.ptrace_scope" = 2;
+    # "kernel.yama.ptrace_scope" = 2;
 
     # ASLR memory protection (64-bit systems)
     "vm.mmap_rnd_bits" = 32;

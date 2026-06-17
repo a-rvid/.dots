@@ -19,9 +19,10 @@
       pavucontrol
       ffmpeg
       mpv
-      firefox
+      # firefox
       dnsutils
       acpi
+      ncspot
       swappy
       pinentry-curses
       keepassxc
