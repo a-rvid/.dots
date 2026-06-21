@@ -4,6 +4,12 @@
   imports = [
     ../../modules/bundle.nix
   ];
+
+  boot.initrd.luks.devices."cryptroot" = {
+    device = "/dev/disk/by-partlabel/disk-main-root";
+    allowDiscards = true;
+  };
+
   messaging.enable = true;
   gaming = {
     enable = true;
