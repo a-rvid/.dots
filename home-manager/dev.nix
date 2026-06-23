@@ -17,8 +17,8 @@
     home.packages = with pkgs; [
       python3
       rust-analyzer
-      gef
       claude-code
+      nodejs
     ];
     programs.vscodium = {
       enable = true;

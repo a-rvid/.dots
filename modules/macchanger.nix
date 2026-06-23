@@ -20,8 +20,13 @@
       after = [ "sys-subsystem-net-devices-${config.macchanger.interface}.device" ];
       script = ''
         ${pkgs.macchanger}/bin/macchanger --random -b ${config.macchanger.interface}
+        touch /var/lib/macchanger-done-${config.macchanger.interface}
       '';
-      serviceConfig.Type = "oneshot";
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+      };
+      unitConfig.ConditionPathExists = "!/var/lib/macchanger-done-${config.macchanger.interface}";
     };
   };
 }

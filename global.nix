@@ -46,26 +46,14 @@ in
     createMountPoints = true;
   };
 
-  security.pam.services = let
-    runLoginScript = {
-      order = 20000;
-      control = "optional";
-      modulePath = "${pkgs.pam}/lib/security/pam_exec.so";
-      args = [ "seteuid" "/home/user/.dots/scripts/login.sh" ];
-    };
-  in {
-    login.rules.session.run_login_script = runLoginScript;
-    ly.rules.session.run_login_script = runLoginScript;
-  };
-
-  systemd.user.services.crypt-mount = {
-    enable = true;
-    description = "Create mount point for gocryptfs";
-    wantedBy = [ "multi-user.target" ];
+  systemd.user.services.stow-crypt = {
+    description = "Stow dotfiles from gocryptfs mount";
+    wantedBy = [ "default.target" ];
     serviceConfig = {
-      ExecStart = ''/run/current-system/sw/bin/ mkdir -p /home/user/.crypt'';
-      User = "user";
-      Group = "users";
+      Type = "oneshot";
+      WorkingDirectory = "/home/user/.crypt";
+      ExecStartPre = "${pkgs.bash}/bin/bash -c 'for _ in $(seq 1 80); do ${pkgs.util-linux}/bin/mountpoint -q /home/user/.crypt && exit 0; sleep 0.25; done; exit 1'";
+      ExecStart = "${pkgs.stow}/bin/stow --restow --target=/home/user .";
     };
   };
 
@@ -94,7 +82,7 @@ in
     config = {
       user.name = "a-rvid";
       user.email = "git@rvid.eu";
-      
+
       core.editor = "nvim";
       merge.tool = "nvim -d";
     };
