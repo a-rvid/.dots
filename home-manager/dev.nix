@@ -2,7 +2,7 @@
 
 {
   options = {
-    dev.enable = 
+    dev.enable =
       lib.mkEnableOption "enables stuff needed for development";
   };
 
@@ -20,15 +20,5 @@
       claude-code
       nodejs
     ];
-    programs.vscodium = {
-      enable = true;
-      profiles.default.extensions = with pkgs.vscode-extensions; [
-        vscodevim.vim
-        rust-lang.rust-analyzer
-        tamasfe.even-better-toml
-        wakatime.vscode-wakatime
-        yzhang.markdown-all-in-one
-      ];
-    };
   };
 }

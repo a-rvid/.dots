@@ -32,6 +32,7 @@
         directories = [
           ".ssh"
           ".dots"
+          ".config/librewolf"
         ];
       };
     };

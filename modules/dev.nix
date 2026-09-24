@@ -13,11 +13,15 @@
     home-manager.users.user.dev.enable = true;
     preservation.preserveAt."/persistent".users.user = {
       directories = [
-        ".claude"
         ".rustup"
         ".cargo"
+	".claude"
       ];
       files = [ ".claude.json" ];
+    };
+
+    environment.sessionVariables = rec {
+        EDITOR = "emacsclient -r";
     };
   };
 }

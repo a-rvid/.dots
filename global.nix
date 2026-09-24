@@ -29,6 +29,10 @@ in
     uutils-diffutils
   ];
   security.run0-sudo-shim.enable = true;
+  #nix.settings = {
+  #  extra-substituters = "https://ardos-os.cachix.org";
+  #  extra-trusted-public-keys = "ardos-os.cachix.org-1:ER39Zub8rFCCCdjZ7VUG+654TvPFkH8fvk2Iofzt74s=";
+  #};
 
   security.pam.mount = {
     enable = true;
@@ -86,9 +90,5 @@ in
       core.editor = "nvim";
       merge.tool = "nvim -d";
     };
-  };
-
-  environment.sessionVariables = rec {
-    EDITOR = "nvim";
   };
 }

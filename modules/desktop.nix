@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./mullvad-browser.nix
     ./vol.nix
     ./usbguard.nix
   ];
@@ -11,8 +10,16 @@
     desktop.enable =
       lib.mkEnableOption "enables desktop stuff";
   };
-
   config = lib.mkIf config.desktop.enable {
+
+  services.tailscale = {
+    # Enable tailscale at startup
+    enable = true;
+
+    # If you would like to use a preauthorized key, set
+    # authKeyFile = "/run/secrets/tailscale_key";
+    # Note: maximum expire time is 90 days
+  };
     custom.security.usbguard.enable = true;
     environment.systemPackages = with pkgs; [
       brightnessctl
@@ -20,6 +27,7 @@
       ffmpeg
       mpv
       # firefox
+      librewolf
       dnsutils
       acpi
       ncspot
@@ -64,13 +72,36 @@
     #     bigclock = true;
     #   };
     # };
-
+    services.udev.packages = with pkgs; [ yubikey-personalization libfido2 ];
+    services.pcscd.enable = true;
+    
     home-manager.users.user.sway.enable = true;
     hardware.bluetooth.enable = true;
 
     services.flatpak.enable = true;
-    xdg.portal.enable = true;
-    xdg.portal.wlr.enable = true;
+    xdg.portal = {
+      enable = true;
+      wlr = {
+        enable = true;
+        settings.screencast = {
+          # pick output/region interactively when an app requests a capture
+          chooser_type = "simple";
+          chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -or";
+          max_fps = 30;
+        };
+      };
+      # file chooser / settings / app chooser; wlr only implements screencast
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+      xdgOpenUsePortal = true;
+      config = {
+        sway = {
+          default = [ "wlr" "gtk" ];
+          "org.freedesktop.impl.portal.ScreenCast" = [ "wlr" ];
+          "org.freedesktop.impl.portal.Screenshot" = [ "wlr" ];
+        };
+        common.default = [ "wlr" "gtk" ];
+      };
+    };
 
     preservation.preserveAt."/persistent".users.user.directories = [
       "Documents"

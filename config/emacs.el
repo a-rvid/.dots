@@ -1,4 +1,5 @@
 (setq standard-indent 2)
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 (setq-default indent-tabs-mode nil)
 (setq inhibit-startup-screen t
     ring-bell-function 'ignore)
@@ -96,3 +97,20 @@
 ;;(load-file ~/.crypt/.emacs.d/spotcred.el)
 ;;(setq smudge-transport 'connect)
 ;;(define-key smudge-mode-map (kbd "C-c .") 'smudge-command-map)
+
+;; term
+(setq proced-enable-color-flag t)
+(defun new-eat ()
+  (interactive)
+  (eat nil t))
+
+(defun smart-eat-kill-or-close ()
+  (interactive)
+  (let ((buf (window-buffer (selected-window))))
+    (with-current-buffer buf
+      (if (derived-mode-p 'eat-mode)
+          (progn
+            (let ((kill-buffer-query-functions nil))
+              (kill-buffer buf))
+            (delete-frame))
+        (delete-frame)))))

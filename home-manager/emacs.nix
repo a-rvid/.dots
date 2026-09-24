@@ -28,8 +28,8 @@
       wakatime-mode
       rainbow-delimiters
       jabber
-      vterm
       doom-themes
+      eat
       nerd-icons
       evil-commentary
       rustic
